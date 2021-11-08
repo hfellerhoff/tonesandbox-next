@@ -12,7 +12,7 @@ class MyDocument extends Document {
           <script
             async
             defer
-            src='https://scripts.simpleanalyticscdn.com/latest.js'
+            src='https://stats.tonesandbox.com/latest.js'
           ></script>
         </Head>
         <body>
