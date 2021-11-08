@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.select {
+  border: none;
+  background: transparent;
+}
+
+.status {
+  width: 0.75rem;
+  height: 0.75rem;
+
+  border-radius: 50%;
+  margin-left: 0.5rem;
+}
+
+.status--not-connected {
+  background: orange;
+}
+.status--not-supported {
+  background: red;
+}
+.status--connected {
+  background: #26c93f;
+}
