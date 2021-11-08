@@ -1,7 +1,10 @@
-.container {
-  display: flex;
-  flex-direction: column;
+.hero {
+  margin-top: 6rem;
 
-  height: 100vh;
-  width: 100vw;
+  padding: 0 2rem;
+}
+
+.hero h2 {
+  font-size: 2rem;
+  font-weight: 100;
 }

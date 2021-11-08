@@ -37,7 +37,7 @@ const Piano = ({ activeNotes }: Props) => {
 
   useEffect(() => {
     if (pianoRef.current) {
-      pianoRef.current.scrollTo({ left: pianoRef.current.scrollWidth / 6 });
+      pianoRef.current.scrollTo({ left: pianoRef.current.clientWidth / 2 });
     }
   }, [pianoRef]);
 

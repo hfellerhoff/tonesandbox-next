@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { MIDIMessage, useMIDI } from '../../store/midi';
+import Tooltip from '../tooltip/Tooltip';
 import styles from './midi.module.css';
 
 export type MIDIInput = {
@@ -79,14 +80,14 @@ const MIDI = ({}: Props) => {
   }, [broadcast, inputs]);
 
   const status: MIDIStatus = doesSupportMIDI
-    ? inputs.length === 0
+    ? inputs.length === 0 || isLoading
       ? 'not-connected'
       : 'connected'
     : 'not-supported';
 
   return (
     <div className={styles.container}>
-      {inputs.length > 0 && !isLoading ? (
+      {status === 'connected' ? (
         <div>
           <select className={styles.select}>
             {inputs.map((input) => (
@@ -96,6 +97,10 @@ const MIDI = ({}: Props) => {
             ))}
           </select>
         </div>
+      ) : status === 'not-supported' ? (
+        <Tooltip content='To use MIDI, use Chrome, Opera, or Edge.'>
+          MIDI not supported
+        </Tooltip>
       ) : (
         <></>
       )}
