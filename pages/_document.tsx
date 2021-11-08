@@ -9,6 +9,11 @@ class MyDocument extends Document {
             href='https://fonts.googleapis.com/css2?family=Urbanist&display=swap'
             rel='stylesheet'
           />
+          <script
+            async
+            defer
+            src='https://scripts.simpleanalyticscdn.com/latest.js'
+          ></script>
         </Head>
         <body>
           <Main />
