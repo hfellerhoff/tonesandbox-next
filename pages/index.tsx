@@ -4,13 +4,10 @@ import { useState } from 'react';
 import Header from '../src/components/header/Header';
 import Piano from '../src/components/piano';
 import useHandlePlayback from '../src/hooks/useHandlePlayback';
-import { MIDIMessage } from '../src/store/midi';
 import styles from './index.module.css';
 
 const Home: NextPage = () => {
   const { activeNotes } = useHandlePlayback();
-
-  console.log(activeNotes);
 
   return (
     <div>
