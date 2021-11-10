@@ -9,6 +9,7 @@ const Layout: React.FC<Props> = ({ children }) => {
     <Box
       sx={{
         height: '100vh',
+        width: '100vw',
       }}
     >
       <Header />
@@ -17,6 +18,7 @@ const Layout: React.FC<Props> = ({ children }) => {
           paddingTop: 16,
           paddingLeft: 16,
           height: '100%',
+          width: '100%',
         }}
       >
         {children}
