@@ -16,14 +16,13 @@
   padding: 1rem;
   border-radius: 6px;
 
-  /* Position the tooltip text - see examples below! */
   position: absolute;
   z-index: 1;
 
   width: 16rem;
   top: 100%;
   right: 0%;
-  margin-top: 1rem; /* Use half of the width (120/2 = 60), to center the tooltip */
+  margin-top: 1rem;
 }
 
 /* Show the tooltip text when you mouse over the tooltip container */

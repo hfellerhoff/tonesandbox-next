@@ -1,8 +1,8 @@
 import Head from 'next/head';
 import React from 'react';
-import Header from '../../src/components/header/Header';
-import CenteredLayout from '../../src/components/layout/CenteredLayout';
-import Sequencer from '../../src/components/sequencer/Sequencer';
+import Header from '../../../src/components/header/Header';
+import CenteredLayout from '../../../src/components/layout/CenteredLayout';
+import Sequencer from '../../../src/components/sequencer/Sequencer';
 
 interface Props {}
 

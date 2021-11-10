@@ -1,6 +1,7 @@
 import React from 'react';
 import SequencerTile from './SequencerTile';
 import styles from './sequencer.module.css';
+import { Paragraph } from '@theme-ui/components';
 
 interface Props {
   notes: string[];
@@ -11,9 +12,9 @@ const SequencerColumn = ({ notes }: Props) => {
     <>
       <div className={styles.column}>
         {notes.map((note) => (
-          <span key={note} className={styles.label}>
+          <Paragraph key={note} className={styles.label}>
             {note}
-          </span>
+          </Paragraph>
         ))}
       </div>
     </>

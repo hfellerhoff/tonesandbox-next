@@ -1,3 +1,4 @@
+import { Paragraph } from '@theme-ui/components';
 import React from 'react';
 import { Note } from 'theory.js';
 import { PianoStyle } from '.';
@@ -61,7 +62,7 @@ const PianoKey = ({ note, octave, style, activeNotes }: Props) => {
       onMouseLeave={() => stopNote(name)}
       onFocus={() => playNote(name)}
     >
-      {name}
+      <Paragraph>{name}</Paragraph>
     </div>
   );
 };

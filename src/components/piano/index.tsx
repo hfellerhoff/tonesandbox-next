@@ -14,6 +14,8 @@ import * as Tone from 'tone';
 
 interface Props {
   activeNotes: Record<string, boolean>;
+  style?: PianoStyle;
+  noScroll?: boolean;
 }
 
 export type PianoStyle = {
@@ -26,20 +28,22 @@ const octaves = Array(8)
   .fill(1)
   .map((v, i) => v + i);
 
-const style: PianoStyle = {
-  width: 4,
-  height: 20,
-  gap: 0.5,
-};
-
-const Piano = ({ activeNotes }: Props) => {
+const Piano = ({
+  activeNotes,
+  style = {
+    width: 4,
+    height: 20,
+    gap: 0.5,
+  },
+  noScroll = false,
+}: Props) => {
   const pianoRef = useRef<HTMLDivElement>();
 
   useEffect(() => {
-    if (pianoRef.current) {
+    if (pianoRef.current && !noScroll) {
       pianoRef.current.scrollTo({ left: pianoRef.current.clientWidth / 2 });
     }
-  }, [pianoRef]);
+  }, [pianoRef, noScroll]);
 
   return (
     <>

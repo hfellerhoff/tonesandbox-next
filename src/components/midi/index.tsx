@@ -1,7 +1,7 @@
+import { Box, Flex, Paragraph, Select } from '@theme-ui/components';
 import React, { useEffect, useState } from 'react';
 import { MIDIMessage, useMIDI } from '../../store/midi';
 import Tooltip from '../tooltip/Tooltip';
-import styles from './midi.module.css';
 
 export type MIDIInput = {
   connection: string;
@@ -77,6 +77,10 @@ const MIDI = ({}: Props) => {
         console.log('Updated onmidimessage.');
       }
     }
+
+    return () => {
+      inputs.forEach((input) => (input.onmidimessage = null));
+    };
   }, [broadcast, inputs]);
 
   const status: MIDIStatus = doesSupportMIDI
@@ -86,26 +90,46 @@ const MIDI = ({}: Props) => {
     : 'not-supported';
 
   return (
-    <div className={styles.container}>
+    <Flex
+      sx={{
+        alignItems: 'center',
+        justifyContent: 'space-between',
+      }}
+    >
       {status === 'connected' ? (
         <div>
-          <select className={styles.select}>
+          <Paragraph>{inputs[0].name}</Paragraph>
+          {/* <Select>
             {inputs.map((input) => (
               <option key={input.id} value={input.id}>
                 {input.name}
               </option>
             ))}
-          </select>
+          </Select> */}
         </div>
       ) : status === 'not-supported' ? (
-        <Tooltip content='To use MIDI, use Chrome, Opera, or Edge.'>
-          MIDI not supported
+        <Tooltip content='To connect to a MIDI controller, use Chrome, Opera, or Edge.'>
+          MIDI Not Supported
         </Tooltip>
       ) : (
         <></>
       )}
-      <div className={`${styles.status} ${styles[`status--${status}`]}`} />
-    </div>
+      <Box
+        sx={{
+          marginLeft: 2,
+          width: '0.75rem',
+          height: '0.75rem',
+          borderRadius: '50%',
+
+          background:
+            status === 'connected'
+              ? 'green'
+              : status === 'not-connected'
+              ? 'orange'
+              : 'red',
+        }}
+      />
+    </Flex>
   );
 };
 
