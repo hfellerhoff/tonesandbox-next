@@ -16,7 +16,7 @@ const Home: NextPage = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Layout>
-        <Padding
+        {/* <Padding
           sx={{
             height: '100%',
             display: 'flex',
@@ -43,7 +43,7 @@ const Home: NextPage = () => {
           >
             creation, and experimentation
           </Heading>
-        </Padding>
+        </Padding> */}
       </Layout>
     </>
   );
