@@ -1,55 +1,51 @@
-import { Box, Paragraph } from '@theme-ui/components';
 import React, { useState } from 'react';
-import styles from './Tooltip.module.css';
+import { styled } from '../../../stitches.config';
 
 interface Props {
   content: string;
   children: string;
 }
 
+const TooltipContainer = styled('div', {
+  position: 'relative',
+  display: 'inline-block',
+  borderBottom: '1px dotted $slate12',
+
+  cursor: 'pointer',
+});
+
+const TooltipText = styled('p', {
+  color: '$slate1',
+  textAlign: 'center',
+  backgroundColor: '$slate12',
+
+  position: 'absolute',
+  top: '100%',
+  width: '16rem',
+  right: 0,
+
+  marginTop: '1rem',
+  padding: '1rem',
+  borderRadius: '1rem',
+});
+
 const Tooltip = ({ content, children }: Props) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <Box
+    <TooltipContainer
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      sx={{
-        position: 'relative',
-        display: 'inline-block',
-        borderBottom: '1px dotted black',
-
-        cursor: 'pointer',
-      }}
     >
-      <Paragraph
-        sx={{
-          fontSize: 1,
-        }}
-      >
-        {children}
-      </Paragraph>
-      <Paragraph
-        sx={{
-          color: '#fff',
-          textAlign: 'center',
-          backgroundColor: '#1a1818',
+      <p>{children}</p>
+      <TooltipText
+        css={{
           visibility: isHovered ? 'visible' : 'hidden',
-
-          position: 'absolute',
-          top: '100%',
-          width: '16rem',
-          right: 0,
-          fontSize: 1,
-
-          marginTop: 4,
-          padding: 4,
-          borderRadius: 4,
         }}
       >
         {content}
-      </Paragraph>
-    </Box>
+      </TooltipText>
+    </TooltipContainer>
   );
 };
 

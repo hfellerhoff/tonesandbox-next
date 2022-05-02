@@ -1,4 +1,3 @@
-import { Box, Flex, Heading, Paragraph } from '@theme-ui/components';
 import React from 'react';
 import Link from '../core/Link';
 import MIDI from '../midi';
@@ -6,8 +5,34 @@ import { MdCheckBoxOutlineBlank, MdPiano } from 'react-icons/md';
 import HeaderLink from './HeaderLink';
 import { useRouter } from 'next/dist/client/router';
 import HeaderTopLink from './HeaderTopLink';
+import { styled } from '../../../stitches.config';
+import Flex from '../utility/Flex';
+import { H1 } from '../utility/Headings';
 
 interface Props {}
+
+const TopHeader = styled('header', {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  position: 'absolute',
+  width: '100%',
+  borderBottom: '1px solid $slate7',
+  zIndex: 1,
+  background: '$slate1',
+});
+
+const LeftHeader = styled('nav', {
+  position: 'absolute',
+  height: '100%',
+  width: '4rem',
+  marginTop: '4rem',
+  borderRight: '1px solid $slate7',
+  zIndex: 1,
+  display: 'flex',
+  flexDirection: 'column',
+  background: '$slate1',
+});
 
 const Header = ({}: Props) => {
   const router = useRouter();
@@ -26,87 +51,58 @@ const Header = ({}: Props) => {
 
   return (
     <>
-      <Box
-        as='header'
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          position: 'absolute',
-          width: '100%',
-          borderBottom: '1px solid #454545',
-          background: '#EDEDED',
-          // paddingLeft: 16,
-          zIndex: 1,
-        }}
-      >
+      <TopHeader>
         <Flex>
           <Link href='/'>
             <Flex
-              sx={{
+              css={{
                 alignItems: 'center',
                 justifyContent: 'center',
-                borderRight: '1px solid #454545',
-                paddingLeft: [6, 8, 12],
-                paddingRight: [6, 8, 12],
+                borderRight: '1px solid $slate7',
+                paddingLeft: '2rem',
+                paddingRight: '2rem',
                 height: '4rem',
+                '&:hover': {
+                  background:
+                    'linear-gradient(to bottom right, $amber9, $plum9)',
+                },
               }}
             >
-              <Heading
-                as='h1'
-                sx={{
-                  fontSize: 3,
-                }}
-              >
-                Tone Sandbox
-              </Heading>
+              <H1 css={{ fontSize: '1.125rem' }}>Tone Sandbox</H1>
             </Flex>
           </Link>
           {breadcrumbs.length > 0 && breadcrumbs[0] !== '' && (
             <HeaderTopLink href={pathnameArray.slice(0, 2).join('/')}>
-              <Paragraph>{breadcrumbs[0]}</Paragraph>
+              <p>{breadcrumbs[0]}</p>
             </HeaderTopLink>
           )}
           {breadcrumbs.length > 1 && (
             <HeaderTopLink href={pathnameArray.slice(0, 3).join('/')}>
-              <Paragraph>{breadcrumbs[1]}</Paragraph>
+              <p>{breadcrumbs[1]}</p>
             </HeaderTopLink>
           )}
         </Flex>
         <Flex
-          sx={{
-            height: '4rem',
-            paddingLeft: [6, 8, 12],
-            paddingRight: [6, 8, 12],
+          css={{
             alignItems: 'center',
             justifyContent: 'center',
-            borderLeft: '1px solid #454545',
+            borderLeft: '1px solid $slate7',
+            paddingLeft: '2rem',
+            paddingRight: '2rem',
+            height: '4rem',
           }}
         >
           <MIDI />
         </Flex>
-      </Box>
-      <Box
-        as='nav'
-        sx={{
-          position: 'absolute',
-          height: '100%',
-          width: '4rem',
-          marginTop: 16,
-          borderRight: '1px solid #454545',
-          background: '#EDEDED',
-          zIndex: 1,
-          display: 'flex',
-          flexDirection: 'column',
-        }}
-      >
+      </TopHeader>
+      <LeftHeader>
         <HeaderLink href='/perform/piano' first>
           <MdPiano size={24} />
         </HeaderLink>
         <HeaderLink href='/create/sequencer'>
           <MdCheckBoxOutlineBlank size={24} />
         </HeaderLink>
-      </Box>
+      </LeftHeader>
     </>
   );
 };

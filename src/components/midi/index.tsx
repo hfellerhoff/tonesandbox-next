@@ -1,7 +1,8 @@
-import { Box, Flex, Paragraph, Select } from '@theme-ui/components';
 import React, { useEffect, useState } from 'react';
+import { styled } from '../../../stitches.config';
 import { MIDIMessage, useMIDI } from '../../store/midi';
 import Tooltip from '../tooltip/Tooltip';
+import Flex from '../utility/Flex';
 
 export type MIDIInput = {
   connection: string;
@@ -22,6 +23,13 @@ export type MIDIMessageEvent = {
 export type MIDIStatus = 'not-connected' | 'not-supported' | 'connected';
 
 interface Props {}
+
+const MIDIStatusIndicator = styled('div', {
+  marginLeft: '0.5rem',
+  width: '0.75rem',
+  height: '0.75rem',
+  borderRadius: '9999px',
+});
 
 const MIDI = ({}: Props) => {
   const broadcast = useMIDI((state) => state.broadcast);
@@ -91,14 +99,14 @@ const MIDI = ({}: Props) => {
 
   return (
     <Flex
-      sx={{
+      css={{
         alignItems: 'center',
         justifyContent: 'space-between',
       }}
     >
       {status === 'connected' ? (
         <div>
-          <Paragraph>{inputs[0].name}</Paragraph>
+          <p>{inputs[0].name}</p>
           {/* <Select>
             {inputs.map((input) => (
               <option key={input.id} value={input.id}>
@@ -114,13 +122,8 @@ const MIDI = ({}: Props) => {
       ) : (
         <></>
       )}
-      <Box
-        sx={{
-          marginLeft: 2,
-          width: '0.75rem',
-          height: '0.75rem',
-          borderRadius: '50%',
-
+      <MIDIStatusIndicator
+        css={{
           background:
             status === 'connected'
               ? 'green'

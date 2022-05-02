@@ -83,9 +83,4 @@ export const theme: Theme = {
       ...bodyStyle,
     },
   },
-  // text: {
-  //   paragraph: {
-  //     marginTop: 2,
-  //   },
-  // },
 };

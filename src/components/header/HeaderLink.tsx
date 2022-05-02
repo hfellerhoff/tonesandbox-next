@@ -1,6 +1,5 @@
-import { Flex, Paragraph } from '@theme-ui/components';
-import React, { useState } from 'react';
-import { MdArrowForward } from 'react-icons/md';
+import React from 'react';
+import { styled } from '../../../stitches.config';
 import Link from '../core/Link';
 
 interface Props {
@@ -8,28 +7,31 @@ interface Props {
   first?: boolean;
 }
 
+const HeaderLinkContent = styled('div', {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  height: '4rem',
+  width: '4rem',
+  flexShrink: 0,
+  borderBottom: '1px solid $slate7',
+  borderRight: '1px solid $slate7',
+  '&:hover': {
+    background: 'linear-gradient(to bottom right, $amber9, $plum9)',
+    color: 'white',
+  },
+});
+
 const HeaderLink: React.FC<Props> = ({ children, href, first = false }) => {
   return (
     <Link href={href}>
-      <Flex
-        sx={{
-          alignItems: 'center',
-          justifyContent: 'center',
-          height: '4rem',
-          width: '4rem',
-          flexShrink: 0,
-          borderBottom: '1px solid #454545',
-          borderRight: '1px solid #454545',
-          borderTop: first ? '1px solid #454545' : '',
-          '&:hover': {
-            background:
-              'linear-gradient(to bottom right, #FDBB2D 0%, #3A1C71 100%)',
-            color: 'white',
-          },
+      <HeaderLinkContent
+        css={{
+          borderTop: first ? '1px solid $slate7' : '',
         }}
       >
         {children}
-      </Flex>
+      </HeaderLinkContent>
     </Link>
   );
 };
